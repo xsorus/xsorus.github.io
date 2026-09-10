@@ -66,5 +66,5 @@ document.getElementById("checkButton").addEventListener("click", function() {
 
 
     // Po chwili pokazujemy następne słowo
-    setTimeout(showRandomWord, 1500);
+    setTimeout(showRandomWord, 3000);
 });
