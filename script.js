@@ -1,13 +1,17 @@
 let words = [];
+let remainingWords = [];
 let currentWord;
 let score = 0;
 
 
 // Wczytanie pliku JSON
-fetch("dane.json")
+fetch("words.json")
     .then(response => response.json())
     .then(data => {
         words = data;
+
+        // Tworzymy kopię wszystkich słów
+        remainingWords = [...words];
 
         // Losujemy pierwsze słowo
         showRandomWord();
@@ -20,14 +24,37 @@ fetch("dane.json")
 // Losowanie słowa
 function showRandomWord() {
 
-    const randomIndex = Math.floor(Math.random() * words.length);
+    // Sprawdzamy, czy zostały jeszcze jakieś słowa
+    if (remainingWords.length === 0) {
 
-    currentWord = words[randomIndex];
+        document.getElementById("word").textContent = "Koniec";
+        document.getElementById("result").textContent =
+            "Twój wynik: " + score + " / " + words.length;
 
+        document.getElementById("answer").disabled = true;
+        document.getElementById("checkButton").disabled = true;
+
+        return;
+    }
+
+
+    // Losujemy pozycję w tablicy
+    const randomIndex = Math.floor(Math.random() * remainingWords.length);
+
+    // Pobieramy wylosowane słowo
+    currentWord = remainingWords[randomIndex];
+
+    // Usuwamy je z tablicy dostępnych słów
+    remainingWords.splice(randomIndex, 1);
+
+
+    // Wyświetlamy słowo
     document.getElementById("word").textContent = currentWord.english;
 
+    // Czyścimy pole odpowiedzi
     document.getElementById("answer").value = "";
 
+    // Czyścimy komunikat
     document.getElementById("result").textContent = "";
 }
 
@@ -46,25 +73,25 @@ document.getElementById("checkButton").addEventListener("click", function() {
 
     if (userAnswer === correctAnswer) {
 
-        // Dodanie punktu
+        // Dodajemy 1 punkt
         score++;
 
         document.getElementById("score").textContent = score;
 
         document.getElementById("result").textContent = "✓ Dobrze!";
 
-    } 
-    else {
+    } else {
 
         document.getElementById("result").textContent =
             "Źle, poprawne słowo to: " + currentWord.polish;
     }
 
 
-    // Czyszczenie pola
+    // Czyścimy pole
     document.getElementById("answer").value = "";
 
 
-    // Po chwili pokazujemy następne słowo
-    setTimeout(showRandomWord, 3000);
+    // Po 1,5 sekundy pokazujemy następne słowo
+    setTimeout(showRandomWord, 1500);
 });
+```
