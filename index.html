@@ -1,33 +1,39 @@
-<!doctype HTML>
-<html lang = "PL">
-    <head>
-        <meta charset = "UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            Moja strona
-        </title>
-        <style>
-            body{margin:0px 50px; background-color: black;}
-            div{ font-size:150px; text-align:center; position: relative; top:100px; font-family: Arial;
-            animation-name: kolor;
-            animation-duration: 5s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            animation-delay: 0s;
-            animation-play-state: running;
-            animation-direction: alternate;}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6</title>
+    <style>
+        body{background-image: url(images.jpg);  background-size: cover; position: relative; }
+        .drugi{text-align: center; margin-top: 200px;}
+    </style>
+</head>
+<body>
+    <div class="pierwszy">
 
-            @keyframes kolor {
-                0%{color: red;}
-                25%{color: green;}
-                50%{color: blue;}
-                75%{color: yellow;}
-                100%{color: pink;}
-            }
-        </style>
-    </head>
-    <body>
-       <div>WÓJT JEST ZŁODZIEJ</div>
-        
-    </body>
+   
+    </div>
+    <div class="drugi">
+         <h1>English Quiz</h1>
+
+<p>Przetłumacz słowo:</p>
+
+<h2 id="word"></h2>
+
+<input type="text" id="answer" placeholder="Wpisz tłumaczenie">
+
+<button id="checkButton">Sprawdź</button>
+
+<p id="result"></p>
+
+<p>Punkty: <span id="score">0</span></p>
+
+<script src="script.js"></script>
+    </div>
+    <script src="script.js"></script>
+       
+
+   
+</body>
 </html>
