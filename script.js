@@ -94,4 +94,4 @@ document.getElementById("checkButton").addEventListener("click", function() {
     // Po 1,5 sekundy pokazujemy następne słowo
     setTimeout(showRandomWord, 1500);
 });
-```
+
