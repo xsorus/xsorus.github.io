@@ -5,7 +5,7 @@ let score = 0;
 
 
 // Wczytanie pliku JSON
-fetch("words.json")
+fetch("dane.json")
     .then(response => response.json())
     .then(data => {
         words = data;
