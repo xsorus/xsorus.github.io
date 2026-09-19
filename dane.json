@@ -38,5 +38,9 @@
     {
         "english": "morning",
         "polish": "rano"
-    }
+    },
+    {
+        "english": "burglar",
+        "polish": "włamywacz"
+    },
 ]
