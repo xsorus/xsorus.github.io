@@ -13,7 +13,7 @@ const postepHTML = document.getElementById("postep");
 const wynikHTML = document.getElementById("wynik");
 
 // Pobieramy słówka z pliku JSON
-fetch("dane.json")
+fetch("/main/dane.json")
     .then(odpowiedz => {
         if (!odpowiedz.ok) {
             throw new Error("Nie udało się wczytać pliku JSON.");
