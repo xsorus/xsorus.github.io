@@ -1,46 +1,47 @@
+
 [
-    {
-        "english": "apple",
-        "polish": "jabłko"
-    },
-    {
-        "english": "house",
-        "polish": "dom"
-    },
-    {
-        "english": "water",
-        "polish": "woda"
-    },
-    {
-        "english": "book",
-        "polish": "książka"
-    },
-    {
-        "english": "computer",
-        "polish": "komputer"
-    },
-    {
-        "english": "school",
-        "polish": "szkoła"
-    },
-    {
-        "english": "friend",
-        "polish": "przyjaciel"
-    },
-    {
-        "english": "beautiful",
-        "polish": "piękny"
-    },
-    {
-        "english": "window",
-        "polish": "okno"
-    },
-    {
-        "english": "morning",
-        "polish": "rano"
-    },
-    {
-        "english": "burglar",
-        "polish": "włamywacz"
-    }
+  {
+    "english": "apple",
+    "polish": "jabłko"
+  },
+  {
+    "english": "house",
+    "polish": "dom"
+  },
+  {
+    "english": "school",
+    "polish": "szkoła"
+  },
+  {
+    "english": "book",
+    "polish": "książka"
+  },
+  {
+    "english": "dog",
+    "polish": "pies"
+  },
+  {
+    "english": "water",
+    "polish": "woda"
+  },
+  {
+    "english": "window",
+    "polish": "okno"
+  },
+  {
+    "english": "friend",
+    "polish": "przyjaciel"
+  },
+  {
+    "english": "bread",
+    "polish": "chleb"
+  },
+  {
+    "english": "car",
+    "polish": "samochód"
+  },
+  {
+    "english": "bulglar",
+    "polish": "włamywacz"
+  }
 ]
