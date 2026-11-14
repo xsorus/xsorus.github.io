@@ -1,97 +1,151 @@
+let slowa = [];
+let pozostaleSlowa = [];
 
-let words = [];
-let remainingWords = [];
-let currentWord;
-let score = 0;
+let aktualneSlowo = null;
+let liczbaPoprawnych = 0;
+let liczbaPytan = 0;
 
+const slowoHTML = document.getElementById("slowo");
+const odpowiedzHTML = document.getElementById("odpowiedz");
+const przyciskHTML = document.getElementById("przycisk");
+const komunikatHTML = document.getElementById("komunikat");
+const postepHTML = document.getElementById("postep");
+const wynikHTML = document.getElementById("wynik");
 
-// Wczytanie pliku JSON
+// Pobieramy słówka z pliku JSON
 fetch("dane.json")
-    .then(response => response.json())
-    .then(data => {
-        words = data;
+    .then(odpowiedz => {
+        if (!odpowiedz.ok) {
+            throw new Error("Nie udało się wczytać pliku JSON.");
+        }
 
-        // Tworzymy kopię wszystkich słów
-        remainingWords = [...words];
-
-        // Losujemy pierwsze słowo
-        showRandomWord();
+        return odpowiedz.json();
     })
-    .catch(error => {
-        console.error("Błąd podczas wczytywania pliku JSON:", error);
+    .then(dane => {
+        slowa = dane;
+
+        if (slowa.length === 0) {
+            throw new Error("Baza słówek jest pusta.");
+        }
+
+        // Kopia listy wszystkich słów
+        pozostaleSlowa = [...slowa];
+
+        losujSlowo();
+    })
+    .catch(blad => {
+        slowoHTML.textContent = "Błąd wczytywania";
+        komunikatHTML.textContent = blad.message;
+        przyciskHTML.disabled = true;
     });
 
 
 // Losowanie słowa
-function showRandomWord() {
-
-    // Sprawdzamy, czy zostały jeszcze jakieś słowa
-    if (remainingWords.length === 0) {
-
-        document.getElementById("word").textContent = "Koniec";
-        document.getElementById("result").textContent =
-            "Twój wynik: " + score + " / " + words.length;
-
-        document.getElementById("answer").disabled = true;
-        document.getElementById("checkButton").disabled = true;
-
+function losujSlowo() {
+    if (pozostaleSlowa.length === 0) {
+        zakonczQuiz();
         return;
     }
 
+    // Losujemy indeks dostępnego słowa
+    let indeks = Math.floor(
+        Math.random() * pozostaleSlowa.length
+    );
 
-    // Losujemy pozycję w tablicy
-    const randomIndex = Math.floor(Math.random() * remainingWords.length);
+    // Pobieramy słowo i usuwamy je z puli
+    aktualneSlowo = pozostaleSlowa.splice(indeks, 1)[0];
 
-    // Pobieramy wylosowane słowo
-    currentWord = remainingWords[randomIndex];
+    slowoHTML.textContent = aktualneSlowo.english;
 
-    // Usuwamy je z tablicy dostępnych słów
-    remainingWords.splice(randomIndex, 1);
+    liczbaPytan++;
 
+    postepHTML.textContent =
+        `Słowo ${liczbaPytan} z ${slowa.length}`;
 
-    // Wyświetlamy słowo
-    document.getElementById("word").textContent = currentWord.english;
+    odpowiedzHTML.value = "";
+    odpowiedzHTML.disabled = false;
+    odpowiedzHTML.focus();
 
-    // Czyścimy pole odpowiedzi
-    document.getElementById("answer").value = "";
+    komunikatHTML.textContent = "";
+    wynikHTML.textContent = "";
 
-    // Czyścimy komunikat
-    document.getElementById("result").textContent = "";
+    przyciskHTML.textContent = "Sprawdź";
 }
 
 
 // Sprawdzanie odpowiedzi
-document.getElementById("checkButton").addEventListener("click", function() {
-
-    const userAnswer = document
-        .getElementById("answer")
-        .value
-        .trim()
-        .toLowerCase();
-
-    const correctAnswer = currentWord.polish.toLowerCase();
-
-
-    if (userAnswer === correctAnswer) {
-
-        // Dodajemy 1 punkt
-        score++;
-
-        document.getElementById("score").textContent = score;
-
-        document.getElementById("result").textContent = "✓ Dobrze!";
-
-    } else {
-
-        document.getElementById("result").textContent =
-            "Źle, poprawne słowo to: " + currentWord.polish;
+function sprawdzOdpowiedz() {
+    // Jeżeli przycisk pokazuje "Następne słowo",
+    // przechodzimy do kolejnego pytania.
+    if (przyciskHTML.textContent === "Następne słowo") {
+        losujSlowo();
+        return;
     }
 
+    let odpowiedzUzytkownika =
+        odpowiedzHTML.value.trim().toLowerCase();
 
-    // Czyścimy pole
-    document.getElementById("answer").value = "";
+    if (odpowiedzUzytkownika === "") {
+        komunikatHTML.textContent =
+            "Wpisz tłumaczenie słowa!";
+        return;
+    }
+
+    let poprawneTlumaczenie =
+        aktualneSlowo.polish.toLowerCase();
+
+    if (odpowiedzUzytkownika === poprawneTlumaczenie) {
+        liczbaPoprawnych++;
+
+        komunikatHTML.textContent = "Dobrze! Poprawna odpowiedź.";
+        komunikatHTML.style.color = "green";
+    } else {
+        komunikatHTML.textContent =
+            `Źle! Poprawne tłumaczenie to: ${aktualneSlowo.polish}`;
+
+        komunikatHTML.style.color = "red";
+    }
+
+    odpowiedzHTML.disabled = true;
+    przyciskHTML.textContent = "Następne słowo";
+
+    // Po ostatnim pytaniu przycisk kończy quiz
+    if (pozostaleSlowa.length === 0) {
+        przyciskHTML.textContent = "Zobacz wynik";
+    }
+}
 
 
-    // Po 1,5 sekundy pokazujemy następne słowo
-    setTimeout(showRandomWord, 1500);
+// Zakończenie quizu
+function zakonczQuiz() {
+    slowoHTML.textContent = "Koniec quizu!";
+    postepHTML.textContent = "Wszystkie słowa zostały wykorzystane.";
+
+    odpowiedzHTML.style.display = "none";
+    przyciskHTML.style.display = "none";
+    komunikatHTML.textContent = "";
+
+    wynikHTML.textContent =
+        `Twój wynik: ${liczbaPoprawnych}/${slowa.length} poprawnych odpowiedzi.`;
+}
+
+
+// Obsługa przycisku
+przyciskHTML.addEventListener("click", function () {
+    if (przyciskHTML.textContent === "Zobacz wynik") {
+        zakonczQuiz();
+    } else {
+        sprawdzOdpowiedz();
+    }
+});
+
+// Można również zatwierdzić odpowiedź klawiszem Enter
+odpowiedzHTML.addEventListener("keydown", function (event) {
+    if (
+        event.key === "Enter" &&
+        !odpowiedzHTML.disabled &&
+        przyciskHTML.textContent === "Sprawdź"
+    ) {
+        sprawdzOdpowiedz();
+    }
 });
