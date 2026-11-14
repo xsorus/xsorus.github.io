@@ -1,39 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 6</title>
+    <title>Quiz angielskich słówek</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body{background-image: url(images.jpg);  background-size: cover; position: relative; }
-        .drugi{text-align: center; margin-top: 200px;}
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f7;
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quiz {
+    background-color: white;
+    width: 350px;
+    max-width: calc(100% - 60px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px #00000020;
+    text-align: center;
+}
+
+h1 {
+    color: #24476b;
+    font-size: 26px;
+}
+
+#postep {
+    color: #666;
+}
+
+#slowo {
+    color: #1769aa;
+    font-size: 36px;
+    margin: 25px 0;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1769aa;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #104c80;
+}
+
+#komunikat {
+    font-weight: bold;
+    min-height: 24px;
+}
+
+#wynik {
+    color: #24476b;
+}
     </style>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="pierwszy">
 
-   
-    </div>
-    <div class="drugi">
-         <h1>English Quiz</h1>
+    <main class="quiz">
+        <h1>Quiz angielskich słówek</h1>
 
-<p>Przetłumacz słowo:</p>
+        <p id="postep">Słowo 1 z 10</p>
 
-<h2 id="word"></h2>
+        <p>Przetłumacz słowo na język polski:</p>
 
-<input type="text" id="answer" placeholder="Wpisz tłumaczenie">
+        <h2 id="slowo">Ładowanie...</h2>
 
-<button id="checkButton">Sprawdź</button>
+        <input
+            type="text"
+            id="odpowiedz"
+            placeholder="Wpisz tłumaczenie"
+            autocomplete="off"
+        >
 
-<p id="result"></p>
+        <button id="przycisk">Sprawdź</button>
 
-<p>Punkty: <span id="score">0</span></p>
+        <p id="komunikat" aria-live="polite"></p>
 
+        <h3 id="wynik"></h3>
+    </main>
 
-    </div>
-    <script src="menu/script.js"></script>
-       
-
-   
 </body>
 </html>
