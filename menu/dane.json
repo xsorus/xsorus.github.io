@@ -1,47 +1,71 @@
 
 [
   {
-    "english": "apple",
-    "polish": "jabłko"
+    "english": "allergic to sth",
+    "polish": "uczulony na coś"
   },
   {
-    "english": "house",
-    "polish": "dom"
+    "english": "ankle",
+    "polish": "kostka"
   },
   {
-    "english": "school",
-    "polish": "szkoła"
+    "english": "bacterial infection",
+    "polish": "infekcja bakteryjna"
   },
   {
-    "english": "book",
-    "polish": "książka"
+    "english": "black eye",
+    "polish": "podbite oko"
   },
   {
-    "english": "dog",
-    "polish": "pies"
+    "english": "bleed",
+    "polish": "krwawić"
   },
   {
-    "english": "water",
-    "polish": "woda"
+    "english": "blood",
+    "polish": "krew"
   },
   {
-    "english": "window",
-    "polish": "okno"
+    "english": "bottom",
+    "polish": "pupa, pośladki"
   },
   {
-    "english": "friend",
-    "polish": "przyjaciel"
+    "english": "brain",
+    "polish": "mózg"
   },
   {
-    "english": "bread",
-    "polish": "chleb"
+    "english": "break a bone",
+    "polish": "złamać kość"
   },
   {
-    "english": "car",
-    "polish": "samochód"
+    "english": "breathe",
+    "polish": "oddychać"
   },
   {
-    "english": "bulglar",
-    "polish": "włamywacz"
-  }
+    "english": "bruise",
+    "polish": "siniak"
+  },
+  {
+    "english": "bruise sth badly",
+    "polish": "mocno coś posiniaczyć"
+  },
+  {
+    "english": "bump",
+    "polish": "guz na czole"
+  },
+  {
+    "english": "burn your hand",
+    "polish": "oparzyć się w rękę"
+  },
+  {
+    "english": "calf",
+    "polish": "łydka"
+  },
+  {
+    "english": "catch a cold",
+    "polish": "złapać przeziębienie"
+  },
+  {
+    "english": "catch a flu",
+    "polish": "złapać grypę"
+  },
 ]
