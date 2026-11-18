@@ -55,7 +55,7 @@ function losujSlowo() {
     // Pobieramy słowo i usuwamy je z puli
     aktualneSlowo = pozostaleSlowa.splice(indeks, 1)[0];
 
-    slowoHTML.textContent = aktualneSlowo.english;
+    slowoHTML.textContent = aktualneSlowo.polish;
 
     liczbaPytan++;
 
@@ -92,7 +92,7 @@ function sprawdzOdpowiedz() {
     }
 
     let poprawneTlumaczenie =
-        aktualneSlowo.polish.toLowerCase();
+        aktualneSlowo.english.toLowerCase();
 
     if (odpowiedzUzytkownika === poprawneTlumaczenie) {
         liczbaPoprawnych++;
@@ -101,7 +101,7 @@ function sprawdzOdpowiedz() {
         komunikatHTML.style.color = "green";
     } else {
         komunikatHTML.textContent =
-            `Źle! Poprawne tłumaczenie to: ${aktualneSlowo.polish}`;
+            `Źle! Poprawne tłumaczenie to: ${aktualneSlowo.english}`;
 
         komunikatHTML.style.color = "red";
     }
